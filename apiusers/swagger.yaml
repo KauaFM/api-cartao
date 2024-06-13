@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: User Registration API
+  version: 1.0.0
+  description: API for user registration
+  contact:
+    name: Miz
+servers:
+  - url: http://localhost:3000
+    description: Development server
+paths:
+  /api/users/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User registered successfully
+        '400':
+          description: Bad request
+  /api/users:
+    get:
+      summary: Get all users
+      tags:
+        - Users
+      responses:
+        '200':
+          description: List of users
+  /api/users/{id}:
+    get:
+      summary: Get user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User data
+        '404':
+          description: User not found
+    put:
+      summary: Update user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+        '404':
+          description: User not found
+    delete:
+      summary: Delete user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+        '404':
+          description: User not found
