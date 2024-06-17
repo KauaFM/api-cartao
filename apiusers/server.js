@@ -13,7 +13,7 @@ connectDB();
 
 app.use(express.json());
 
-const swaggerDocument = YAML.parse('./swagger.yaml');
+const swaggerDocument = YAML.load('./swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/users', userRoutes);
