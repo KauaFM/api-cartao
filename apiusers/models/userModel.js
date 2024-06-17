@@ -12,8 +12,8 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.setPassword = function(password) {
-    this.salt = crypto.randomBytes(16).toString('hex'); // Generate a random salt
-    this.password = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex'); // Hash the password
+    this.salt = crypto.randomBytes(16).toString('hex');
+    this.password = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
 };
 
 userSchema.methods.validPassword = function(password) {

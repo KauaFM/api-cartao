@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
         if (err) {
             return res.status(401).json({ message: 'Unauthorized access' });
         }
-        req.user = decoded; // Set the decoded user object on the request
+        req.user = decoded;
         next();
     });
 };
