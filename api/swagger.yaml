@@ -1,7 +1,96 @@
 openapi: 3.0.0
 info:
-  title: API Loja Virtual
-  version: 0.0.1
-tags:
+  title: Cartao Registration API
+  version: 1.0.0
+  description: API for cartao registration
+  contact:
+    name: Tomás
+servers:
+  - url: http://localhost:3000
+    description: Development server
 paths:
-components:
+  /api/cartoes:
+    post:
+      summary: Register a new cartao
+      tags:
+        - Cartoes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                numCartao:
+                  type: number
+      responses:
+        '201':
+          description: Cartao registered successfully
+        '400':
+          description: Bad request
+    get:
+      summary: Get all cartoes
+      tags:
+        - Cartoes
+      responses:
+        '200':
+          description: List of cartoes
+  /api/cartoes/{id}:
+    get:
+      summary: Get cartao by ID
+      tags:
+        - Cartoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cartao data
+        '404':
+          description: Cartao not found
+    put:
+      summary: Update cartao by ID
+      tags:
+        - Cartoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                numCartao:
+                  type: number
+      responses:
+        '200':
+          description: Cartao updated successfully
+        '404':
+          description: Cartao not found
+    delete:
+      summary: Delete cartao by ID
+      tags:
+        - Cartoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cartao deleted successfully
+        '404':
+          description: Cartao not found
